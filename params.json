@@ -1,0 +1,8 @@
+
+    {
+        "base_path": "http://localhost:8000",
+        "subtitle": "Listings NZ",
+        "author": "Listing Admin",
+        "site_url": "http://localhost:8000",
+        "current_year": 2019
+    }
