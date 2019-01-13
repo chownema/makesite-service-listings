@@ -1,0 +1,16 @@
+{
+    "listings": [
+        {
+            "id": 0,
+            "name": "JJ/'s Expresso",
+            "addr": {
+                "raw": "153 Broadway Newmarket Auckland 1023, Auckland City",
+                "map_url": "https://wises.co.nz/direction/%7B%22text%22:%22Current%20location%22%7D/%7B%22text%22:%22JJ's%20Espresso%22,%22location%22:%7B%22lat%22:-36.8683,%22lng%22:174.7778%7D%7D",
+                "desc": "We are JJ's Espresso in the Auckland Region. We are your local providers in the Cafes category. Get in touch now! ...",
+                "rating": 4,
+                "phone_number": "09-529-5205",
+                "email": "jjexpresso@gmail.com"
+            }
+        }
+    ]
+}

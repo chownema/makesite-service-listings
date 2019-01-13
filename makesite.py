@@ -10,7 +10,9 @@ import glob
 import sys
 import json
 import datetime
-import json
+from pprint import pprint
+sys.path.append('..')
+
 
 def fread(filename):
     """Read file and close the file."""
@@ -143,11 +145,26 @@ def make_list(posts, dst, list_layout, item_layout, **params):
     fwrite(dst_path, output)
 
 
-def main():
+def build_site():
+    clean_site_dir()
+    # Get State of Application
+    params = {}
+    with open('listings.json') as listings_json:
+        params = json.load(listings_json)
+
+    pprint(params)
+    pass
+
+
+def clean_site_dir():
     # Create a new _site directory from scratch.
     if os.path.isdir('_site'):
         shutil.rmtree('_site')
     shutil.copytree('static', '_site')
+
+
+def main():
+    clean_site_dir()
 
     # Default parameters.
     params = {
@@ -168,16 +185,18 @@ def main():
     list_layout = fread('layout/list.html')
     item_service_layout = fread('layout/item-service-listing.html')
     item_layout = fread('layout/item.html')
-    feed_xml = fread('layout/feed.xml')
-    item_xml = fread('layout/item.xml')
+    # feed_xml = fread('layout/feed.xml')
+    # item_xml = fread('layout/item.xml')
 
     # Combine layouts to form final layouts.
     post_layout = render(page_layout, content=post_layout)
     list_layout = render(page_layout, content=list_layout)
 
     # Create site pages.
+    # Home
     make_pages('content/_index.html', '_site/index.html',
                page_layout, **params)
+    # Blog list page
     make_pages('content/[!_]*.html', '_site/{{ slug }}/index.html',
                page_layout, **params)
 
@@ -199,10 +218,10 @@ def main():
               list_layout, item_layout, blog='news', title='News', **params)
 
     # Create RSS feeds.
-    make_list(blog_posts, '_site/blog/rss.xml',
-              feed_xml, item_xml, blog='blog', title='Blog', **params)
-    make_list(news_posts, '_site/news/rss.xml',
-              feed_xml, item_xml, blog='news', title='News', **params)
+    # make_list(blog_posts, '_site/blog/rss.xml',
+    #           feed_xml, item_xml, blog='blog', title='Blog', **params)
+    # make_list(news_posts, '_site/news/rss.xml',
+    #           feed_xml, item_xml, blog='news', title='News', **params)
 
 
 # Test parameter to be set temporarily by unit tests.
